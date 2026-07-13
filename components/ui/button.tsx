@@ -1,15 +1,10 @@
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type ButtonBaseProps = {
   variant?: "primary" | "secondary" | "ghost";
   children: ReactNode;
 };
-
-type ButtonProps = ButtonBaseProps &
-  ButtonHTMLAttributes<HTMLButtonElement> & {
-    href?: never;
-  };
 
 type ButtonLinkProps = ButtonBaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -28,30 +23,18 @@ const variants = {
 const base =
   "inline-flex h-11 items-center justify-center rounded-md px-5 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
-export function Button(props: ButtonProps | ButtonLinkProps) {
-  if ("href" in props) {
-    const { className, variant = "primary", children, href, ...linkProps } = props;
-    const classes = cn(base, variants[variant], className);
-
-    return (
-      <a className={classes} href={href} {...linkProps}>
-        {children}
-      </a>
-    );
-  }
-
-  const {
-    className,
-    variant = "primary",
-    children,
-    type = "button",
-    ...buttonProps
-  } = props;
+export function Button({
+  className,
+  variant = "primary",
+  children,
+  href,
+  ...props
+}: ButtonLinkProps) {
   const classes = cn(base, variants[variant], className);
 
   return (
-    <button className={classes} type={type} {...buttonProps}>
+    <a className={classes} href={href} {...props}>
       {children}
-    </button>
+    </a>
   );
 }
