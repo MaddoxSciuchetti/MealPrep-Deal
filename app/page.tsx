@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,15 +24,12 @@ const iProvide = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-stone-50 text-stone-950">
-      <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-8 sm:px-8 lg:px-10">
-        <header className="flex flex-col gap-4 border-b border-stone-200 pb-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <Badge>Meal prep value exchange</Badge>
-            <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-normal text-stone-950 sm:text-5xl lg:text-6xl">
-              Simple meal prep help in exchange for kitchen access.
-            </h1>
-          </div>
+    <main className="h-screen overflow-hidden bg-stone-50 text-stone-950">
+      <section className="mx-auto flex h-full w-full max-w-6xl flex-col px-5 py-5 sm:px-8 lg:px-10">
+        <header className="flex flex-col gap-4 border-b border-stone-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-3xl font-semibold tracking-normal text-stone-950 sm:text-4xl">
+            Meal Prep Value Exchange
+          </h1>
           <div className="flex flex-wrap gap-3">
             <Button href="mailto:maddoxsciuchetti@gmail.com" variant="secondary">
               Email me
@@ -42,29 +38,29 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="grid flex-1 gap-6 py-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
-          <Card className="flex flex-col justify-between bg-emerald-950 p-7 text-white">
+        <div className="grid min-h-0 flex-1 gap-5 py-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
+          <Card className="flex min-h-0 flex-col justify-between p-6 text-stone-950">
             <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-emerald-200">
+              <p className="text-sm font-medium uppercase tracking-widest text-stone-500">
                 Contact
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-normal sm:text-4xl">
+              <h2 className="mt-3 text-2xl font-semibold tracking-normal sm:text-3xl">
                 Maddox Sciuchetti
               </h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-emerald-50">
+              <p className="mt-3 max-w-xl text-sm leading-6 text-stone-700">
                 I provide three hours of paid meal prep support and leave the
                 kitchen reset afterward.
               </p>
             </div>
-            <div className="mt-10 grid gap-3 text-base">
+            <div className="mt-6 grid gap-3 text-sm">
               <a
-                className="rounded-md bg-white/10 px-4 py-3 font-medium text-white transition hover:bg-white/15"
+                className="rounded-md bg-stone-100 px-4 py-3 font-medium text-stone-950 transition hover:bg-stone-200"
                 href="mailto:maddoxsciuchetti@gmail.com"
               >
                 maddoxsciuchetti@gmail.com
               </a>
               <a
-                className="rounded-md bg-white/10 px-4 py-3 font-medium text-white transition hover:bg-white/15"
+                className="rounded-md bg-stone-100 px-4 py-3 font-medium text-stone-950 transition hover:bg-stone-200"
                 href="tel:+4915123180706"
               >
                 +49 15123180706
@@ -72,18 +68,18 @@ export default function Home() {
             </div>
           </Card>
 
-          <div className="grid gap-6">
+          <div className="grid min-h-0 gap-5">
+            <ExchangeCard
+              title="What I provide"
+              description="Clear compensation and cleanup after the prep session."
+              items={iProvide}
+            />
             <ExchangeCard
               title="What you provide"
               description="The kitchen setup and storage needed for a focused meal prep session."
               items={youProvide}
               linkLabel="View container size"
               linkHref={containerLink}
-            />
-            <ExchangeCard
-              title="What I provide"
-              description="Clear compensation and cleanup after the prep session."
-              items={iProvide}
             />
           </div>
         </div>
@@ -106,12 +102,12 @@ function ExchangeCard({
   linkHref?: string;
 }) {
   return (
-    <Card>
+    <Card className="p-5">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <ol className="space-y-3">
+      <ol className="space-y-2">
         {items.map((item, index) => (
           <li className="flex gap-3 text-stone-800" key={item}>
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-stone-100 text-sm font-semibold text-stone-700">
